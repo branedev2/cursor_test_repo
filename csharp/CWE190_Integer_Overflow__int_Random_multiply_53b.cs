@@ -1,0 +1,54 @@
+/* TEMPLATE GENERATED TESTCASE FILE
+Filename: CWE190_Integer_Overflow__int_Random_multiply_53b.cs
+Label Definition File: CWE190_Integer_Overflow__int.label.xml
+Template File: sources-sinks-53b.tmpl.cs
+*/
+/*
+ * @description
+ * CWE: 190 Integer Overflow
+ * BadSource: Random Set data to a random value
+ * GoodSource: A hardcoded non-zero, non-min, non-max, even number
+ * Sinks: multiply
+ *    GoodSink: Ensure there will not be an overflow before multiplying data by 2
+ *    BadSink : If data is positive, multiply by 2, which can cause an overflow
+ * Flow Variant: 53 Data flow: data passed as an argument from one method through two others to a fourth; all four functions are in different classes in the same package
+ *
+ * */
+
+using TestCaseSupport;
+using System;
+
+using System.Web;
+
+namespace testcases.CWE190_Integer_Overflow
+{
+class CWE190_Integer_Overflow__int_Random_multiply_53b
+{
+#if (!OMITBAD)
+    // {fact rule=integer-overflow@v1.0 defects=1}
+    public static void BadSink(int data )
+    {
+        CWE190_Integer_Overflow__int_Random_multiply_53c.BadSink(data );
+    }
+    // {/fact}
+#endif
+
+#if (!OMITGOOD)
+    /* goodG2B() - use goodsource and badsink */
+    // {fact rule=integer-overflow@v1.0 defects=0}
+    public static void GoodG2BSink(int data )
+    {
+        CWE190_Integer_Overflow__int_Random_multiply_53c.GoodG2BSink(data );
+    }
+    // {/fact}
+
+    /* goodB2G() - use badsource and goodsink */
+    // {fact rule=integer-overflow@v1.0 defects=0}
+    public static void GoodB2GSink(int data )
+    {
+        CWE190_Integer_Overflow__int_Random_multiply_53c.GoodB2GSink(data );
+    }
+    // {/fact}
+#endif
+}
+}
