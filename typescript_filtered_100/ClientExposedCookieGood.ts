@@ -1,0 +1,11 @@
+//{fact rule=insecure-cookie@v1.0 defects=0}
+
+import http from 'http';
+
+const server = http.createServer((_req, res) => {
+    res.setHeader("Set-Cookie", `authKey=${makeAuthkey()}; secure; httpOnly`);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('<h2>Hello world</h2>');
+});
+
+//{/fact}
